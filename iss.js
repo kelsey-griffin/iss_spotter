@@ -71,28 +71,25 @@ const nextISSTimesForMyLocation = (callback) => {
       console.log("It didn't work at fetchMyIP!" , error);
       return;
     }
-    // console.log('It worked! Returned IP:' , ip);
     fetchCoordsByIP(ip, (error, coodinates) => {
       if (error) {
         console.log("It didn't work at fetchCoordsByIP!" , error);
         return;
       }
-      // console.log('It worked! Returned coodinates:' , coodinates);
       fetchISSFlyOverTimes(coodinates, (error, data) => {
         if (error) {
           console.log("It didn't work at fetchISSFlyOverTimes!" , error);
           return;
         }
-        // console.log('It worked! Returned data: ', data);
-        const passTimes = []
+        const passTimes = [];
         data.forEach(element => {
           let date = new Date(element.risetime * 1000);
-          passTimes.push(`Next pass at ${date.toString()} for ${element.duration} seconds!`)
+          passTimes.push(`Next pass at ${date.toString()} for ${element.duration} seconds!`);
         });
-        callback(null, passTimes)
+        callback(null, passTimes);
       });
     });
   });
-};  
+};
 
 module.exports = { fetchMyIP, fetchCoordsByIP, fetchISSFlyOverTimes, nextISSTimesForMyLocation };

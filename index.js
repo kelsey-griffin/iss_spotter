@@ -7,7 +7,5 @@ nextISSTimesForMyLocation((error, passTimes) => {
   // success, print out the deets!
   passTimes.forEach(element => {
     console.log(element);
-  }); 
+  });
 });
-
-
